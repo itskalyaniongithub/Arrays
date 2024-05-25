@@ -1,0 +1,100 @@
+ //Given an unsorted array A of size N of non-negative integers, find a continuous subarray which adds to a given number S.
+
+ //Code :
+
+//This code takes O(n^2) time complexity
+
+
+#include <iostream>
+using namespace std;
+
+void calSum(int ar[], int s, int n){
+    int si,ei;
+    for(int i=0;i<s;i++){
+        int flg = 0;
+        int sum = 0;
+        int j=i;
+        while(j<s && sum<s){
+            sum = sum + ar[j];
+            if(s==sum){
+                si =i;
+                ei = j;
+                flg = 1;
+            }
+            j++;
+        }
+        if(flg == 1){
+            break;
+        }
+    }
+    cout<<"The start index/position is "<<si+1<<" and the end index/position is "<<ei+1;
+}
+
+int main() {
+    // N,S, A[]
+    int n;
+    int s;
+    cout<<"Enter number of elements you want to enter: ";
+    cin>>n;
+    cout<<"The sum you want to chech for a given subarray: ";
+    cin>>s;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cout<<"Enter the "<<i+1<<"th element: ";
+        cin>>a[i];
+    }
+    calSum(a,s,n);
+
+   
+}
+
+// _____________________________________________________________________________
+
+ 
+
+//This code takes O(n) time complexity,
+
+//AN OPTIMIZED APPROACH
+
+
+#include <iostream>
+using namespace std;
+
+void calSum(int ar[], int s, int n){
+    int si=0,ei=1;
+    int cr = si;
+    while(si<s){
+        cr = cr+ar[ei];
+        if(cr>s){
+            si++;
+            cr=si+1;
+            continue;
+        }
+        else if(cr==s){
+            break;
+        }
+        ei++;
+    }
+    
+    cout<<"The start index/position is "<<si+1<<" and the end index/position is "<<ei;
+}
+
+int main() {
+    // N,S, A[]
+    int n;
+    int s;
+    cout<<"Enter number of elements you want to enter: ";
+    cin>>n;
+    cout<<"The sum you want to chech for a given subarray: ";
+    cin>>s;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cout<<"Enter the "<<i+1<<"th element: ";
+        cin>>a[i];
+    }
+    calSum(a,s,n);
+
+   
+}
+
+ 
