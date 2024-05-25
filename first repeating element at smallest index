@@ -1,0 +1,45 @@
+//Given an array arr] of size N. The task is to find the first repeating element in the array of integers, i.e., an element that occurs more than once and whose index of first occurrence is smallest.
+
+//CODE : 
+
+
+#include <iostream>
+using namespace std;
+void duplicateIndex(int ar[],int s){
+    int da[7] = {-1,-1,-1,-1,-1,-1,-1};
+    int i=0;
+    int mI=1000;
+    int ind=0;
+    while(i<s){
+        int flg = 0;
+        for(int j=0;j<7;j++){
+            if(da[j] == ar[i]){
+                ind = j;
+                flg = 1;
+                if(mI>ind){
+                    mI = ind;
+                }
+             }
+    }
+    if(flg == 0){
+        da[i] = ar[i];
+    }
+    i=i+1;
+}
+cout<<"The repeating element at min index is: "<<mI;
+}
+int main() {
+    int s;
+    cout<<"Enter size of array: ";
+    cin>>s;
+    int ar[s];
+    for(int i=0;i<s;i++){
+        cout<<"Enter "<<i+1<<"th element: ";
+        cin>>ar[i];
+    }
+    duplicateIndex(ar,s);
+
+    return 0;
+}
+
+ 
